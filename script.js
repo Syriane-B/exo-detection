@@ -14,6 +14,7 @@ screen.style.background = "linear-gradient(to bottom, #94c5f8 1%,#a6e6ff 70%,#b1
 screen.style.overflow = "hidden";
 
 // Create the platform
+let marginAroundPlateform = 5;
 const heightPlatform = 20;
 const platforms = [
   { top: 80, left: 10, width: 45 },
@@ -75,13 +76,29 @@ class Tonneau {
     return this.t;
   }
 
-  // TODO
+
   detectionSurface = () => {
-
-    // If surface detected
-    //clearInterval(this.intervalID);
+    // pour chaque plateforme
+    for (let i = 0; i < platforms.length; i++) {
+      // definition du mini et du maxi de la position left du tonneau en fonction de la plateform a gauche ou droite
+      let plateformLeft;
+      let plateformRight;
+      if (platforms[i].left) {
+        plateformLeft = parseInt(platforms[i].left) - marginAroundPlateform;
+        plateformRight = parseInt(platforms[i].left) + (parseInt(platforms[i].width) - parseInt(this.t.style.width) + marginAroundPlateform);
+      } else {
+        plateformLeft = widthScreen - platforms[i].right - parseInt(platforms[i].width) - marginAroundPlateform;
+        plateformRight = widthScreen - parseInt(platforms[i].right) - parseInt(this.t.style.width) + marginAroundPlateform;
+      }
+      // Si le tonneau est aligné avec la plateforme
+      if (plateformLeft < parseInt(this.posX) && parseInt(this.posX) < plateformRight) {
+        // si le tonneau touche la plateforme, on arrête sa chute
+        if (parseInt(this.t.style.top) + parseInt(this.t.style.height) + marginAroundPlateform >= platforms[i].top) {
+          clearInterval(this.intervalID);
+        }
+      }
+    }
   }
-
 }
 
 function generateTonneau() {
