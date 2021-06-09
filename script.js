@@ -61,6 +61,7 @@ class Tonneau {
     this.t.style.backgroundColor = "brown";
     this.t.style.border = "1px solid black";
     this.t.style.borderRadius = "8px";
+    this.t.style.transition = 'background-color ease 0.5s';
     this.initialization();
   }
 
@@ -94,6 +95,7 @@ class Tonneau {
       if (plateformLeft < parseInt(this.posX) && parseInt(this.posX) < plateformRight) {
         // si le tonneau touche la plateforme, on arrête sa chute
         if (parseInt(this.t.style.top) + parseInt(this.t.style.height) + 5 >= platforms[i].top) {
+          this.t.style.backgroundColor = Math.floor(Math.random()*16777215).toString(16);
           clearInterval(this.intervalID);
         }
       }
