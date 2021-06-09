@@ -97,6 +97,10 @@ class Tonneau {
         if (parseInt(this.t.style.top) + parseInt(this.t.style.height) + 5 >= platforms[i].top) {
           this.t.style.backgroundColor = Math.floor(Math.random()*16777215).toString(16);
           clearInterval(this.intervalID);
+          //easter Egg
+          this.t.addEventListener('click', () => {
+            this.t.style.backgroundColor = 'rgba(1,1,1,0)';
+          })
         }
       }
     }
