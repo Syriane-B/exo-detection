@@ -14,7 +14,7 @@ screen.style.background = "linear-gradient(to bottom, #94c5f8 1%,#a6e6ff 70%,#b1
 screen.style.overflow = "hidden";
 
 // Create the platform
-let marginAroundPlateform = 5;
+let marginAroundPlateform = 30;
 const heightPlatform = 20;
 const platforms = [
   { top: 80, left: 10, width: 45 },
@@ -29,7 +29,7 @@ const platforms = [
   { top: 290, right: 70, width: 45 },
   { top: 360, right: 90, width: 45 },
   { top: 430, right: 110, width: 45 },
-  
+
 ];
 
 function createPlatorm(d) {
@@ -93,7 +93,7 @@ class Tonneau {
       // Si le tonneau est aligné avec la plateforme
       if (plateformLeft < parseInt(this.posX) && parseInt(this.posX) < plateformRight) {
         // si le tonneau touche la plateforme, on arrête sa chute
-        if (parseInt(this.t.style.top) + parseInt(this.t.style.height) + marginAroundPlateform >= platforms[i].top) {
+        if (parseInt(this.t.style.top) + parseInt(this.t.style.height) + 5 >= platforms[i].top) {
           clearInterval(this.intervalID);
         }
       }
